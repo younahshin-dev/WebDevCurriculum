@@ -1,20 +1,202 @@
 <!DOCTYPE html>
+
 <html>
+	
 	<head>
 		<meta charset="UTF-8">
 		<!-- TODO: 또 무엇이 필요할까요? -->
+		<meta name="description" content="Knowre Web Dev Curriculum Q01 quest">
+		<meta name="keywords" content="HTML">
+		<meta name="author" content="Younah shin">
+		<script src="https://kit.fontawesome.com/bb9c1623b5.js" crossorigin="anonymous"></script>
 	</head>
+	<style>
+		
+
+		html {
+			height:100%;
+			background: rgb(255, 255, 255);
+background: linear-gradient(180deg, rgb(253, 253, 253) 0%, rgba(196,204,200,1) 100%);
+		}
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			height: 100%;
+		}
+		header {
+			margin: 0;
+			background-color: var(--header--color);
+			font-size: var(--font--size);
+			
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+			padding: 0 12px;
+			height: 2em;
+			justify-content: space-between;
+		}
+
+		ul {
+			list-style: none;
+			display: flex;
+			flex-direction: row;
+			margin: 0;
+			padding: 0;
+		}
+
+		a:link, a:visited {
+  		text-decoration: none;
+			color: grey;
+		}
+
+		.main {
+			display: flex;
+			flex-flow: column;
+			height:80%;
+			align-items: center;
+		}
+
+		input {
+			background-color: white;
+    	border: 0px solid;
+			height: 100%;
+			width: 100%;
+		}
+		input:focus {
+			outline: none;
+		}
+
+		.search {
+			display: flex;
+			flex-flow:row;
+			justify-content: space-between;
+			width:50%;
+			max-width:2000px;
+			min-width:300px;
+			border: 2px solid;
+			border-color: rgb(90, 218, 90);
+			margin: 1em 0 1em 0;
+			height: 30px;
+		}
+
+		.favorite{
+			width: 60%;
+			height:30%;
+		}
+
+		.favorite ul{
+		
+			display: flex;
+			flex-flow:row wrap;
+			width:100%;
+			margin:auto;
+			padding: 0;
+
+		}
+		.favorite ul li{
+			
+			display: flex;
+			flex-flow: column;
+			align-items: center;
+			width:25%;
+		}
+		.favorite ul li span{
+			font-size:3px;
+		}
+
+		.favorite img{
+			width:45px;
+		}
+
+		.previews div{
+			margin: 5px 0 5px 0;
+			background-color:white;
+			width:50%;
+			max-width:2000px;
+			min-width:300px;
+			border-radius: 5px;
+		}
+
+		footer {
+			display: flex;
+			flex-flow:column;
+			width:70%;
+			margin:auto;
+			padding: 0;
+		}
+
+		footer ul {
+			list-style: none;
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
+			margin: 0;
+			padding: 0;
+			font-size: 6px;
+		}
+
+		footer ul li {
+			padding: 0 5px 3px 5px;
+		}
+
+	</style>
 	<body>
 		<header>
 			<!-- TODO: 어디까지를 header로 보는 것이 좋을까요? -->
+			<section><img width="15em" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAV1BMVEX///90d3lxdHZtcHJqbW/AwcHk5eWVmJlnam1rbnCpq6yBhIb5+fnHyMng4eH29veKjI6ztLWipKV5fH6OkZLZ2tvq6+vLzMy5u7zIycnR0tLCw8OanJ7n5uYQAAACyUlEQVR4nO3di27iMBCFYcfOFodbEiBAgfd/ziXQSlvJNqkWCc3h/54gR3ac1p4xzgEAAAAAAAAAAAAAAAAoa4fVH2tWQzs13vK4qJtgT1MvjsspAfsYfGWTD7F/mG+/Da9+zv8StvtywKG2On7ffD2UAn7EVz/gE8SPfMCl7Rn6LeTXm5n1KXrnZ7mAa4U5Oopr7SHMD2KrMoTXQUz/eXPQWGdG4ZBMOFeZpNdpOk8m3Akl3CUTLoQSLt40YSeUsEsm3Agl3CQTnoW+Fudkwr3QFz/zT6LMUpNZaJw71a9+tCepT5mEKoOYHUKZNzH3Fo7OChFjeiH9crQfMR5LAZ37jLbfRR8/ywGv72JneEPR192D7dKbYReb4O0JTdwV90r/0Z76zcyaTX+afDQDAAAAAAAAAAAAYDL180P1M2D5c/yV+VqMVTmgfD2NfE2UROtasXlNvjbxIFNfmm6ZkRnC/CCKVJeOMhWm+rX6+v0W+j0zMgvNG3d26fcf6veQ6vcB6/dy6/fjv8GdCiqDmL8X4w3uNtH4J790P41zg/GttnGz7cGeqfw9UU7/ri93u68tmryvLU68r23UDquzNb+4cw8AAAAAAAAAAADAdKd5V726i+nXqm6evSD5p2UfGm/xnNv7JvQTDoFXwXKpQggP2p6cu1ivqImXcsCd5QG8C+nq2S8b+wGvEdOF+jcn61P0LubXVIsraIrPBTwqzNFRyDVZvvrBnigdcK3SnFdVdbpIWGaSZqfpRWWhuS416c8+nV2GvG1nl0gvwijTj9ALraXpYuihefWDPU2TqdcX+uKnA+o0IGbaD51rVQaxzta0i6w1mXXmRuKTWPhRMueWlf2IviruKLbG257GxqdHjSUX091r/tFm4mhYRJNb3uOmd1xM+0mr9Xzb1PY023mxt/Kn5f7Dmv3kvjUAAAAAAAAAAAAAUPUXCyx+ltjBidoAAAAASUVORK5CYII="></img></section><ul><li></li><li>QR체크인</li><li>N 페이</li><li><img width="20px" src="https://thumbs.dreamstime.com/b/cabinet-icon-vector-isolated-white-background-your-web-mobile-app-design-cabinet-logo-concept-cabinet-icon-vector-sign-133803633.jpg"></i></li> </ul>
 		</header>
 
 		<section class="main">
 			<!-- TODO: main은 어떤 식으로 나눌 수 있을까요? -->
+			<img width="130em" style="margin-top:10px" src="https://s.pstatic.net/static/w8/err/lg_naver.gif" >
+			<section class="search" border="2px"> <input name="searchbox" placeholder="검색어를 입력해주세요."/> <ul><li><img width="25em" src="https://static.vecteezy.com/system/resources/previews/000/422/662/large_2x/microphone-icon-vector-illustration.jpg"/></li><li><img width="25em" src="https://thumbs.dreamstime.com/b/camera-icon-isolated-white-background-symbol-vector-185770595.jpg"/></li><li><img width="25em" src="https://static.vecteezy.com/system/resources/thumbnails/000/552/683/small/location_pin_002.jpg"/></li></ul></section>
+			<section class="favorite">
+				<ul>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="뉴스판"><span>뉴스판</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="경제지표판"><span>경제지표판</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="연예판"><span>연예판</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="트렌트판"><span>트렌트판</span></li>
+				</ul>
+				<ul>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="메일"><span>메일</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="카페"><span>카페</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="블로그"><span>블로그</span></li>
+					<li><img src="https://uptempom.com/wp-content/uploads/2021/01/naver-icon-style-1.png" alt="더보기"><span>더보기</span></li>
+				</ul>
+			</section>
+			<section class="previews">
+				<div>
+					날씨
+				</div>
+				<div>
+					날씨2
+				</div>
+				<div>
+					코로나
+				</div>
+				<div>
+					대한민국 임시정부 수립일
+				</div>
+				<div>
+					네이버 앱
+				</div>
+				<div>
+					웹툰
+				</div>
+				<div>
+					인기 주제판을 확인해 보세요
+				</div>
+				<div>
+					네이버앱 업데이트 사전 안내
+				</div>
+			</section>
 		</section>
 
-		<footer>
+		<footer style="color:gray">
 			<!-- TODO: 하단의 여러 가지 링크들은 어떻게 처리하면 좋을까요? -->
+			<ul><li ><a href="http://www.naver.com">로그인</a></li> | <li><a href="http://www.naver.com">전체 서비스</a></li> | <li><a href="http://www.naver.com">PC버전</a></li></ul><ul> <li><a href="http://www.naver.com">이용약관</a></li> | <li><strong><a href="http://www.naver.com">개인정보처리방침</a></strong></li>|<li><a href="http://www.naver.com">고객센터</a></li></ul><span style="text-align: center;"><strong>NAVER</strong></span>
 		</footer>
 	</body>
 </html>
